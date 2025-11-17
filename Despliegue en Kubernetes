@@ -1,0 +1,22 @@
+# backup/cronjob.yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ceph-backup
+  namespace: ceph-backup
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: ceph-backup
+          containers:
+          - name: backup
+            image: ghcr.io/ramon_cerda/ceph-k8s-backup:latest
+            env:
+              - name: RESTIC_REPOSITORY
+                valueFrom:
+                  secretKeyRef:
+                    name: restic
+                    key: repository
