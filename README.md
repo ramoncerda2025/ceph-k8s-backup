@@ -220,4 +220,6 @@ Autor@RAMON_CERDA
 
  – DevOps desde el rancho, con Termux y un Galaxy A52"Si Ceph se cae, mis backups no."
 
-
+git add .
+git commit -m "feat: backup metrics con tabla hermosa en Termux - funciona 100% sin cluster"
+git push origin main
